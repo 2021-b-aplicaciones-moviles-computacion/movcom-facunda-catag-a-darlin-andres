@@ -106,6 +106,73 @@ fun main() {
     println(respuestaMap)
 
     val  respuestaMapDos = arregloDinamico.map { it.toDouble()+15.00  }
+    // Filtrar -> Filtra el arreglo
+    // 1) Devolver una expresion (true o false)
+    // 2) Nuevo arreglo filtrado
+    val respuestaFiltrar: List<Int> = arregloDinamico
+        .filter { valorActual: Int ->
+            val mayoresACinco: Boolean = valorActual > 5
+            return@filter mayoresACinco
+        }
+    val respuestaFiltrarDos = arregloDinamico.filter { it <= 5 }
+    println(respuestaFiltrar)
+    println(respuestaFiltrarDos)
+
+    // OR AND
+    // OR -> ANY (Alguno cumple?)
+    // AND -> ALL (Todos cumplen?)
+    val respuestaAny: Boolean = arregloDinamico
+        .any { valorActual: Int ->
+        return@any (valorActual>5)
+    }
+    println(respuestaAny) // true
+
+    val respuestaAll: Boolean = arregloDinamico
+        .all { valorActual: Int ->
+            return@all (valorActual>5)
+        }
+    println(respuestaAll) // false
+
+    // REDUCE -> Valor acumulado
+    // Valor acumulado = 0 (Siempre en lenguaje Kotlin )
+    // [1,2,3,4,5] -> Sumeme todos los valores del arreglo
+    // valorIteracion1 = valorEmpieza +1 = 0 +1 = 1 ->iteración 1
+    // valorIteracion2 = valorEmpieza1 +2 = 1 +2 = 3 ->iteración 2
+    // valorIteracion3 = valorEmpieza2 +3 = 3 +3 = 6 ->iteración 3
+    // valorIteracion4 = valorEmpieza3 +4 = 6 +4 = 10 ->iteración 4
+    // valorIteracion5 = valorEmpieza4 +5 = 10 +5 = 15 ->iteración 5
+
+
+    val respuestaReduce: Int = arregloDinamico
+        .reduce{//acumulado = 0 -> Siempre empieza en 0
+            acumulado: Int, valorActual: Int ->
+            return@reduce (acumulado + valorActual)// ->logica negocio
+        }
+
+    println(respuestaReduce)
+
+    //100
+    //[12,15,8,10]
+    val arregloDanio = arrayListOf<Int>(12,15,8,10)
+    val respuestaReduceFold = arregloDanio
+        .fold(100,// acumulado inicial
+            { acumulado, valorAcualIteracion ->
+                return@fold acumulado - valorAcualIteracion
+            }
+        )
+    println(respuestaReduceFold)
+
+    val vidaActual: Double = arregloDinamico
+        .map { it * 2.3 } // arreglo
+        .filter { it > 20 } // arreglo
+        .fold(100.00, {acc,i -> acc-i})//valor
+        .also { println(it) } // ejecutar codigo extra
+    println("Valor vida actual ${vidaActual}")
+
+
+
+
+
 }
 
 fun imprimirNombre (nombre: String): Unit{ // Unit es el void, y es opcional
@@ -124,5 +191,61 @@ fun calcularSueldo(
         return sueldo*(100/tasa)
     } else {
         return sueldo * (100 / tasa) + bonoEspecial
+    }
+}
+
+
+
+abstract class NumerosJava{
+    protected val numeroUno: Int //Propiedad clase
+    private val numeroDos: Int //Propiedad clase
+    constructor(
+        uno: Int, //Parametros requeridos
+        dos: Int, //Parametros requeridos
+    ){
+        //this.numeroUno = uno
+        //this.numeroDos = dos
+        numeroUno= uno
+        numeroDos = dos
+        println("Inicializar")
+    }
+}
+
+
+abstract class Numeros(
+    // Constructor Primario
+    protected val numeroUno: Int, //Propiedad clase
+    protected val numeroDos: Int, //Propiedad clase
+){
+    init{ // bloque inicio del constructor primario
+        println("Inicializar")
+    }
+}
+
+// instancia.numeroUno
+// instancia.numeroDos
+
+
+
+abstract class Suma(
+    // Constructor Primario
+    uno: Int, //Parametros requeridos
+    dos: Int, //Parametros requeridos
+):Numeros(// Constructor "papa" (super)
+    uno,
+    dos
+) {
+    init{ // bloque inicio del constructor primario
+        this.numeroUno
+        this.numeroDos
+        //X-> this.uno -> NO EXISTE
+        //X-> this.dos -> NO EXISTE
+    }
+
+    // public fun sumar(): Int{
+    fun sumar(): Int {
+        // val total: Int = this.numeroUno + this.numeroDos
+        val total: Int = numeroUno + numeroDos
+        return total
     }
 }
