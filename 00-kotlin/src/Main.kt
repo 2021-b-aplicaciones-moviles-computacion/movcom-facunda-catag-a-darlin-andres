@@ -169,8 +169,17 @@ fun main() {
         .also { println(it) } // ejecutar codigo extra
     println("Valor vida actual ${vidaActual}")
 
-
-
+    //clases
+    val ejemploUno = Suma(1,2)
+    val ejemploDos = Suma(null,2)
+    val ejemploTres = Suma(1,null)
+    val ejemploCuatro = Suma(null,null)
+    println(ejemploUno.sumar())
+    println(ejemploDos.sumar())
+    println(ejemploTres.sumar())
+    println(ejemploCuatro.sumar())
+    println(Suma.pi)
+    println(Suma.historialSumas)
 
 
 }
@@ -227,7 +236,7 @@ abstract class Numeros(
 
 
 
-abstract class Suma(
+class Suma(
     // Constructor Primario
     uno: Int, //Parametros requeridos
     dos: Int, //Parametros requeridos
@@ -241,11 +250,51 @@ abstract class Suma(
         //X-> this.uno -> NO EXISTE
         //X-> this.dos -> NO EXISTE
     }
+    constructor(// Segundo constructor
+        uno: Int?, //parametros
+        dos: Int //parametros
+         ) : this( // llamada constructor primario
+        if (uno == null) 0 else uno,
+        dos
+         ){
+             // bloque codigo segundo constructor
+         }
+    constructor(// Tercer constructor
+        uno: Int, //parametros
+        dos: Int? //parametros
+    ) : this(
+        // llamada constructor primario
+        uno,
+        if (dos == null) 0 else dos,
+    ){
+        // bloque codigo tercer constructor
+    }
+
+    constructor(// Cuarto constructor
+        uno: Int?, //parametros
+        dos: Int? //parametros
+    ) : this( // llamada constructor primario
+        if (uno == null) 0 else uno,
+        if (dos == null) 0 else dos,
+    ){
+        // bloque codigo cuarto constructor
+    }
 
     // public fun sumar(): Int{
     fun sumar(): Int {
         // val total: Int = this.numeroUno + this.numeroDos
         val total: Int = numeroUno + numeroDos
+        agregarHistorial(total)
         return total
     }
+
+    // Singleton (solo hay una sola instancia de estas cosas, uno por clase, puede haber en dentro mas de una funcion)
+    companion object { // METODOS Y PROPIEDADES ESTATICAS
+        val pi = 3.14
+        val historialSumas = arrayListOf<Int>()
+        fun agregarHistorial(valorNuevaSuma: Int){
+            historialSumas.add(valorNuevaSuma)
+        }
+    }
 }
+
