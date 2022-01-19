@@ -12,6 +12,15 @@
         <activity
             android:name=".AEditarDisenador"
             android:exported="false" />
+        <activity
+            android:name=".AEditarDiseno"
+            android:exported="false" />
+        <activity
+            android:name=".AVerDisenador"
+            android:exported="false" />
+        <activity
+            android:name=".BVerDiseno"
+            android:exported="false" />
 
         <activity
             android:name=".MainActivity"
