@@ -11,34 +11,24 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 
 class AVerDisenador : AppCompatActivity(){
-<<<<<<< HEAD
 
-=======
->>>>>>> desarrollo
     var itemSelected = 0
 
     override fun onCreate( savedInstanceState: Bundle? ) {
         super.onCreate( savedInstanceState )
         setContentView( R.layout.activity_verdisenador )
         val listView = findViewById<ListView>( R.id.lst_disenador )
-<<<<<<< HEAD
+
         var arrlistaNombre = arrayListOf<String>()
         BaseDatosMemoria.arrObjDisenador.forEach { disenador: ObjDisenador ->
             arrlistaNombre.add(disenador.nombre.toString())
-=======
-        var arrDisenadorlistaNombre = arrayListOf<String>()
-        BaseDatosMemoria.arrObjDisenador.forEach { disenador: ObjDisenador ->
-            arrDisenadorlistaNombre.add(disenador.nombre.toString())
->>>>>>> desarrollo
+
         }
         val futAdapter = ArrayAdapter(
             this,
             android.R.layout.simple_list_item_1,
-<<<<<<< HEAD
             arrlistaNombre
-=======
-            arrDisenadorlistaNombre
->>>>>>> desarrollo
+
         )
         listView.adapter = futAdapter
         futAdapter.notifyDataSetChanged()

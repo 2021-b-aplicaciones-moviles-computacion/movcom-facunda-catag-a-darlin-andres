@@ -9,10 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExamenAndresFacunda">
-        <activity
-            android:name=".AEditarDisenador"
-            android:exported="false" />
-<<<<<<< HEAD
+      
         <activity
             android:name=".AEditarDiseno"
             android:exported="false" />
@@ -22,8 +19,6 @@
         <activity
             android:name=".BVerDiseno"
             android:exported="false" />
-=======
->>>>>>> desarrollo
 
         <activity
             android:name=".MainActivity"
