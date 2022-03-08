@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "91823983695",
+    "project_id": "examenb2moviles",
+    "storage_bucket": "examenb2moviles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91823983695:android:6518c1e26f8c68dafa6e3a",
+        "android_client_info": {
+          "package_name": "com.example.examen2andresfacundav1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91823983695-nkdh4v6rn39aba8m8u3h0do0m4l0vtru.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcr0_t8aDPh6qNbkyG2H3enFo_t7InufQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91823983695-nkdh4v6rn39aba8m8u3h0do0m4l0vtru.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

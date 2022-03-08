@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pantalla"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,32 +11,74 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hola_mundo"
-        android:textColor="@color/letras"
-        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.374" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn_ir_ciclo_vida"
-        android:layout_width="179dp"
-        android:layout_height="99dp"
-        android:layout_marginTop="56dp"
-        android:text="Ciclo vida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Ciclo Vida"
         app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/btn_ir_list_view"
-        android:layout_width="159dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="52dp"
-        android:text="List view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="List View"
         app:layout_constraintEnd_toEndOf="@+id/btn_ir_ciclo_vida"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="@+id/btn_ir_ciclo_vida"
         app:layout_constraintTop_toBottomOf="@+id/btn_ir_ciclo_vida" />
+
+    <Button
+        android:id="@+id/btn_intent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Intent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_ir_list_view"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="@+id/btn_ir_list_view"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ir_list_view" />
+
+    <Button
+        android:id="@+id/btn_ir_intent_implicito"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Intent Implicito"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btn_ir_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Recycler View"
+        app:layout_constraintBottom_toTopOf="@+id/btn_ir_intent_implicito"
+        app:layout_constraintEnd_toEndOf="@+id/btn_ir_intent_implicito"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="@+id/btn_ir_intent_implicito" />
+
+    <Button
+        android:id="@+id/btn_ir_http"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="Http"
+        app:layout_constraintBottom_toTopOf="@+id/btn_ir_recycler_view"
+        app:layout_constraintEnd_toEndOf="@+id/btn_ir_recycler_view"
+        app:layout_constraintStart_toStartOf="@+id/btn_ir_recycler_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,28 +19,35 @@ class BListView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blist_view)
 
-    val ListView = findViewById<ListView>(R.id.lv_list_view)
-    val arreglo: ArrayList<Int> = arrayListOf(1,2,3,4,5)
+        val listView = findViewById<ListView>(R.id.lv_list_view)
+        val arreglo: ArrayList<Int> = arrayListOf(1, 2, 3, 4, 5)
 
-    val adaptador = ArrayAdapter(
-        this, // Contexto
-        android.R.layout.simple_list_item_1, // como se va a ver (xml)
-        arreglo// arreglo
-    )
-    ListView.adapter = adaptador
-    adaptador.notifyDataSetChanged()
+        val adaptador = ArrayAdapter(
+            this, // Contexto
+            android.R.layout.simple_list_item_1, // como se va a ver (XML)
+            BBaseDatosMemoria.arregloBEntrenador
+        )
+        listView.adapter = adaptador
+        adaptador.notifyDataSetChanged()
 
-    val botonAnadirListView = findViewById<Button>(R.id.btn_anadir_list_view)
-    botonAnadirListView.setOnClickListener {
-            anadirItem(adaptador,arreglo,1)
-        }
+        val botonAnadirListView = findViewById<Button>(R.id.btn_anadir_list_view)
 
-        //1)Registrar menu contextual
-        //this.register.ContextMenu(ListView)
-        unregisterForContextMenu(ListView)
+        botonAnadirListView
+            .setOnClickListener { anadirItem(adaptador, BBaseDatosMemoria.arregloBEntrenador, 1) }
+
+//        listView
+//            .setOnItemLongClickListener { parent, view, position, id ->
+//                Log.i("list-view", "LONG CLICK ${arreglo[position]}")
+//                return@setOnItemLongClickListener true
+//            }
+
+        // 1) Registrar menu contextual
+        // this.registerForContextMenu(listView)
+        registerForContextMenu(listView)
 
     }
 
+    // 2) Seleccionar el XML a usar en el menu contextual
     override fun onCreateContextMenu(
         menu: ContextMenu?,
         v: View?,
@@ -52,56 +59,56 @@ class BListView : AppCompatActivity() {
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val id = info.position
         idItemSeleccionado = id
-
+        Log.i("context-menu", "Posicion: ${id}")
     }
 
-    // 3) que opcion se selecciono
-
-
+    // 3) Que opcion se selecciono
     override fun onContextItemSelected(
         item: MenuItem
     ): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.mi_editar -> {
-                Log.i("context-menu","Editar posicion: ${idItemSeleccionado}")
+                Log.i("context-menu", "Editar Posicion: ${idItemSeleccionado}")
                 abrirDialogo()
                 return true
             }
             R.id.mi_eliminar -> {
-                Log.i("context-menu","Editar posicion : ${idItemSeleccionado}")
+                Log.i("context-menu", "Eliminar Posicion: ${idItemSeleccionado}")
                 return true
             }
-            else -> return super.onContextItemSelected(item)
+            else -> super.onContextItemSelected(item)
         }
-
     }
 
-    fun abrirDialogo(){
+    fun abrirDialogo() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Titulo")
-        //builder.setMessage("Descripcion") // el mensaje no deja visualizar los multiples chox
+//        builder.setMessage("Descripcion")  // El mensaje no deja visualizar los multiple choice tener CUIDADO!
+
         val opciones = resources.getStringArray(
             R.array.string_array_opciones_dialogo
         )
+
         val seleccionPrevia = booleanArrayOf(
             true,
             false,
             false
         )
+
         builder.setMultiChoiceItems(
             opciones,
             seleccionPrevia,
-            {
-                dialog,
-                which,
-                isChecked -> Log.i("dialogo", "Dio clic en el item ${which}")
+            { dialog,
+              which,
+              isChecked ->
+                Log.i("dialogo", "Dio clic en el item ${which}")
             }
         )
 
         builder.setPositiveButton(
             "Aceptar",
-            DialogInterface.OnClickListener{ dialog, which ->
-                Log.i("dialogo", "hola")
+            DialogInterface.OnClickListener { dialog, which ->
+                Log.i("dialogo", "Hola =) ")
             }
         )
 
@@ -114,12 +121,13 @@ class BListView : AppCompatActivity() {
         dialogo.show()
     }
 
+
     fun anadirItem(
-        adaptador: ArrayAdapter<Int>,
-        arreglo: ArrayList<Int>,
+        adaptador: ArrayAdapter<BEntrenador>,
+        arreglo: ArrayList<BEntrenador>,
         valor: Int
-    ){
-        arreglo.add(valor)
+    ) {
+        arreglo.add(BEntrenador("otro", "o@o.com"))
         adaptador.notifyDataSetChanged()
     }
 }
